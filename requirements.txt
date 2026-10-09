@@ -8,3 +8,5 @@ mlflow
 streamlit
 plotly
 shap
+pytest
+httpx

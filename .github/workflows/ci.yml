@@ -37,6 +37,12 @@ jobs:
           python -m py_compile src/training/train.py
           python -m py_compile src/training/retrain.py
 
+      
+      - name: Run API tests
+        run: |
+          python -m pytest tests/test_api.py -v
+    
+
       - name: Build Docker image
         run: |
           docker build -t churnguard-api .
