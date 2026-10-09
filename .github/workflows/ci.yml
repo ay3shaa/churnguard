@@ -38,10 +38,11 @@ jobs:
           python -m py_compile src/training/retrain.py
 
       
-      - name: Run API tests
+      
+      - name: Run tests with coverage
         run: |
-          python -m pytest tests/test_api.py -v
-    
+          python -m pytest tests/ --cov=src --cov-report=term-missing
+
 
       - name: Build Docker image
         run: |

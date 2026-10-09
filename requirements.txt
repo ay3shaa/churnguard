@@ -10,3 +10,4 @@ plotly
 shap
 pytest
 httpx
+pytest-cov
