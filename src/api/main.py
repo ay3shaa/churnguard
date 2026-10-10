@@ -72,6 +72,13 @@ def root():
         "message": "ChurnGuard API is running"
     }
 
+def get_risk_level(probability: float) -> str:
+    if probability >= 0.70:
+        return "HIGH"
+    elif probability >= 0.40:
+        return "MEDIUM"
+    return "LOW"
+
 
 @app.post("/predict")
 def predict(customer: Customer):
@@ -111,12 +118,7 @@ def predict(customer: Customer):
 
     prediction = int(probability >= threshold)
 
-    if probability >= 0.70:
-        risk_level = "HIGH"
-    elif probability >= threshold:
-        risk_level = "MEDIUM"
-    else:
-        risk_level = "LOW"
+    risk_level = get_risk_level(probability)
 
     response_time = (time.perf_counter() - start_time) * 1000
 
