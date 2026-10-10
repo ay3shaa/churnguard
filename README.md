@@ -32,17 +32,25 @@ Logistic Regression was selected based on its F1 score.
 
 ## Architecture
 
+
+## Architecture
+
 ```mermaid
-flowchart LR
+flowchart TD
     A[Dataset] --> B[Model Training]
-    B --> C[MLflow]
-    C --> D[FastAPI]
-    D --> E[Predictions]
-    E --> F[Prediction Logs]
-    F --> G[Drift Detection]
-    G --> H[Retraining]
-    H --> C
+    B --> C[MLflow Model Registry]
+    C --> D[FastAPI Prediction API]
+    D --> E[Churn Predictions]
+    E --> F[Production Prediction Logs]
+    F --> G[Data Drift Detection]
+    G --> H{High Drift Detected?}
+    H -- No --> I[Continue Monitoring]
+    H -- Yes --> J[Retrain Candidate Model]
+    J --> K{F1 Score Improved?}
+    K -- Yes --> C
+    K -- No --> L[Reject Candidate Model]
 ```
+
 
 ## Testing and CI
 
