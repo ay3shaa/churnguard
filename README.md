@@ -30,34 +30,6 @@ Logistic Regression was selected based on its F1 score.
 | F1 Score | 61.50% |
 | ROC-AUC | 84.19% |
 
-## Architecture
-
-
-## Architecture
-
-
-flowchart TD
-    A[Telco Customer Churn Dataset] --> B[Data Preprocessing]
-    B --> C[Train and Evaluate Models]
-    C --> D[Select Best Model]
-    D --> E[MLflow Experiment Tracking and Model Registry]
-    E --> F[FastAPI Loads Trained Model]
-    F --> G[User Sends Customer Data]
-    G --> H[Predict Churn Probability]
-    H --> I[Assign LOW, MEDIUM, or HIGH Risk]
-    I --> J[Return Prediction]
-    I --> K[Log Prediction to CSV]
-    K --> L[PSI-Based Drift Detection]
-    L --> M[Report Drift Status]
-
-    N[Retraining Pipeline] --> O[Check for High Drift]
-    O --> P[Evaluate Current Model F1]
-    P --> Q[Train Candidate Model]
-    Q --> R{Candidate F1 Improved?}
-    R -- Yes --> S[Register Improved Model in MLflow]
-    R -- No --> T[Keep Existing Registered Model]
-
-
 
 ## Testing and CI
 
