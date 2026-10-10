@@ -35,21 +35,28 @@ Logistic Regression was selected based on its F1 score.
 
 ## Architecture
 
-```mermaid
+
 flowchart TD
-    A[Dataset] --> B[Model Training]
-    B --> C[MLflow Model Registry]
-    C --> D[FastAPI Prediction API]
-    D --> E[Churn Predictions]
-    E --> F[Production Prediction Logs]
-    F --> G[Data Drift Detection]
-    G --> H{High Drift Detected?}
-    H -- No --> I[Continue Monitoring]
-    H -- Yes --> J[Retrain Candidate Model]
-    J --> K{F1 Score Improved?}
-    K -- Yes --> C
-    K -- No --> L[Reject Candidate Model]
-```
+    A[Telco Customer Churn Dataset] --> B[Data Preprocessing]
+    B --> C[Train and Evaluate Models]
+    C --> D[Select Best Model]
+    D --> E[MLflow Experiment Tracking and Model Registry]
+    E --> F[FastAPI Loads Trained Model]
+    F --> G[User Sends Customer Data]
+    G --> H[Predict Churn Probability]
+    H --> I[Assign LOW, MEDIUM, or HIGH Risk]
+    I --> J[Return Prediction]
+    I --> K[Log Prediction to CSV]
+    K --> L[PSI-Based Drift Detection]
+    L --> M[Report Drift Status]
+
+    N[Retraining Pipeline] --> O[Check for High Drift]
+    O --> P[Evaluate Current Model F1]
+    P --> Q[Train Candidate Model]
+    Q --> R{Candidate F1 Improved?}
+    R -- Yes --> S[Register Improved Model in MLflow]
+    R -- No --> T[Keep Existing Registered Model]
+
 
 
 ## Testing and CI
